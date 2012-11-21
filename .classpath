@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/dave/P/Current/Hosted projects/AF/securemarytts_af/WebContent/WEB-INF/lib/marytts-server-5.0-jar-with-dependencies.jar" sourcepath="C:/dave/cached downloads/Code/mary src combined"/>
+	<classpathentry kind="lib" path="C:/Program Files/apache-tomcat-7.0.32/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/dave/P/Current/Hosted projects/AF/securemarytts_af/WebContent/WEB-INF/lib/commons-codec-1.4.jar" sourcepath="C:/dave/cached downloads/Code/commons-codec-1.4-src/src/java/"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
