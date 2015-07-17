@@ -235,13 +235,13 @@ public class SecureMaryTTSServlet extends HttpServlet {
 		}
 	}
 	
-	private static Locale localeFromString(String s) {
-		int underscoreLoc = s.indexOf('_');
+	private static Locale localeFromString(String localeString) {
+		int underscoreLoc = localeString.indexOf('_');
 		if (underscoreLoc == -1) {
-			return new Locale(s);
+			return new Locale(localeString);
 		} else {
-			String language = s.substring(0, underscoreLoc);
-			String country = s.substring(underscoreLoc);
+			String language = localeString.substring(0, underscoreLoc);
+			String country = localeString.substring(underscoreLoc);
 			return new Locale(language, country);
 		}
 	}
