@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.*;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -44,6 +47,8 @@ public class SecureMaryTTSServlet extends HttpServlet {
 				|| signature == null || expiresStr == null) {			
 			return;
 		}
+		
+		/*
 		if (input.length() > MAX_INPUT_LENGTH) {
 			return;
 		}
@@ -61,11 +66,14 @@ public class SecureMaryTTSServlet extends HttpServlet {
 		}		
 		
 		// Get user Key
-		byte[] keyBytes = userKeyMap.get(user);
-		if (keyBytes == null) {
+		//byte[] keyBytes = userKeyMap.get(user);
+		String userKey = System.getenv("USER_KEY");
+		if (userKey == null || userKey == "") {
+			log("Must specify USER_KEY env variable");
 			return;
-		}		
-		
+		}
+		byte[] keyBytes = userKey.getBytes();		
+		*/
 		// Get optional parameters
 		String audioTypeName = req.getParameter("f");
 		String outputTypeParams = req.getParameter("outputTypeParams");
@@ -74,6 +82,7 @@ public class SecureMaryTTSServlet extends HttpServlet {
 		String gender = req.getParameter("gender");
 		String voiceName = req.getParameter("voice");
 		
+		/*
 		// Test signature
 		String stringToSign = input + localeString + expiresStr + 
 				blankIfNull(audioTypeName) + blankIfNull(outputTypeParams) + 
@@ -93,7 +102,8 @@ public class SecureMaryTTSServlet extends HttpServlet {
 	    byte[] signatureBytes = Base64.decodeBase64(signature.getBytes(ENCODING));
 	    if (!Arrays.equals(correctSignature, signatureBytes)) {
 	    	return;
-	    }	    
+	    }
+	    */	    
 		
 	    // Set parameter defaults
 	    if (localeString == "") {
@@ -198,7 +208,7 @@ public class SecureMaryTTSServlet extends HttpServlet {
 		props.setProperty("log4j.appender.A1.layout", "org.apache.log4j.PatternLayout");
 		PropertyConfigurator.configure(props);
 				
-		System.setProperty("MARY_BASE", getServletContext().getRealPath("/"));		
+		//System.setProperty("MARY_BASE", getServletContext().getRealPath("/"));		
 		
 		startMaryIfNeeded();
 	}
@@ -234,5 +244,15 @@ public class SecureMaryTTSServlet extends HttpServlet {
 			String country = s.substring(underscoreLoc);
 			return new Locale(language, country);
 		}
-	}	
+	}
+	
+    public static void main(String[] args) throws Exception{
+        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.setContextPath("/");
+        server.setHandler(context);
+        context.addServlet(new ServletHolder(new SecureMaryTTSServlet()),"/*");
+        server.start();
+        server.join();   
+    }	
 }

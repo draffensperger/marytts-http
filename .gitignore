@@ -21,3 +21,6 @@ nbproject/private/
 *.DS_Store
 *.swp
 *.out
+
+target
+log
