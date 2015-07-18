@@ -1,4 +1,4 @@
-marytts-server
+marytts-http
 ===========
 
 HTTP server front end to [MaryTTS](http://github.com/marytts/marytts) (text-to-speech engine).
@@ -50,7 +50,7 @@ in say 2020, then the fully signed URL would be:
 maryserver.example.com/?text=Hallo&locale=de&expires=1607670000&signature=
 ```
 
-Here's some sample PHP code for signing a request an embedding it into a page:
+Here's sample PHP code for signing a request and embedding it in a page:
 
 
 Deployment

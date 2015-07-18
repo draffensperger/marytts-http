@@ -25,3 +25,5 @@ nbproject/private/
 target
 log
 build
+.settings
+.project
