@@ -15,10 +15,10 @@ public class MaryRequest {
 
   private String text;
   private String localeStr;
+  private String voiceName;
   private String style;
   private String effects;
   private String gender;
-  private String voiceName;
   private String expiresStr;
   private String signature;
 
@@ -38,6 +38,7 @@ public class MaryRequest {
       return;
     }
 
+    resp.setContentType("audio/wave");
     try {
       MaryUtil.writeWaveAudio(resp.getOutputStream(), text, localeStr, gender, 
           voiceName, style, effects);
@@ -49,11 +50,11 @@ public class MaryRequest {
 
   private void getParams() {
     text = req.getParameter("text");
-    style = paramOrDefault("style", "");
-    effects = paramOrDefault("effects", "Volume amount:2.0;");
+    localeStr = paramOrDefault("locale", requestLocaleString());
     gender = paramOrDefault("gender", "");
     voiceName = paramOrDefault("voice", "");
-    localeStr = paramOrDefault("locale", requestLocaleString());
+    style = paramOrDefault("style", "");
+    effects = paramOrDefault("effects", "");
     expiresStr = req.getParameter("expires");
     signature = paramOrDefault(req.getParameter("signature"), "");
   }
@@ -101,8 +102,8 @@ public class MaryRequest {
   }
 
   private boolean isValidSignature() {
-    String toSign = text + localeStr + expiresStr + style + effects + gender +
-      voiceName;
+    String toSign = text + localeStr + gender + voiceName + style + effects +
+      expiresStr;
     try {
       byte[] correctSignature = mac.doFinal(toSign.getBytes("UTF-8"));
       return MessageDigest.isEqual(signatureBytes, correctSignature);

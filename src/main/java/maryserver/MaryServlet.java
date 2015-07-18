@@ -46,8 +46,8 @@ public class MaryServlet extends HttpServlet {
 
   private void initRequestMac(String secret) {
     try {
-      mac = Mac.getInstance("HmacSHA1");
-      mac.init(new SecretKeySpec(secret.getBytes(), "HmacSHA1"));
+      mac = Mac.getInstance("HmacSHA256");
+      mac.init(new SecretKeySpec(secret.getBytes(), "HmacSHA256"));
     } catch (Exception e) {
       log("Exception inializing authentication", e);
     }

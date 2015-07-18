@@ -6,30 +6,30 @@
   </properties>
 
   <groupId>com.github.draffensperger</groupId>
-  <artifactId>maryservlet</artifactId>
-  <name>maryservlet</name>
+  <artifactId>maryserver</artifactId>
+  <name>maryserver</name>
   <version>0.1</version>
-  <description>Java servlet to allow easy hosting of MaryTTS</description>
-  
+  <description>Java server front end for MaryTTS</description>
+
   <repositories>
     <repository>
-		<id>central</id>
-		<name>jcenter</name>
-		<releases>
-			<enabled>true</enabled>
-		</releases>
-		<snapshots>
-			<enabled>false</enabled>
-		</snapshots>
-		<url>http://jcenter.bintray.com</url>
-	</repository>
+      <id>central</id>
+      <name>jcenter</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>http://jcenter.bintray.com</url>
+    </repository>
     <repository>
-		<id>bintray</id>
-  		<url>https://dl.bintray.com/marytts/marytts</url>
-	</repository>
+      <id>bintray</id>
+      <url>https://dl.bintray.com/marytts/marytts</url>
+    </repository>
   </repositories>
-  
-  <dependencies>  	
+
+  <dependencies>
     <dependency>
       <groupId>de.dfki.mary</groupId>
       <artifactId>marytts-runtime</artifactId>
@@ -50,7 +50,7 @@
       <artifactId>voice-cmu-slt-hsmm</artifactId>
       <version>${marytts.version}</version>
     </dependency>
-        
+
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-servlet</artifactId>
@@ -62,15 +62,15 @@
       <version>2.5</version>
     </dependency>
     <dependency>
-		<groupId>commons-codec</groupId>
-		<artifactId>commons-codec</artifactId>
-		<version>1.9</version>
-	</dependency>
-	<dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.17</version>
-	</dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -90,12 +90,11 @@
               <url>http://mary.dfki.de/download/5.1/voice-bits3-hsmm-5.1.zip</url>
               <unpack>true</unpack>
               <outputDirectory>${project.build.directory}/voices</outputDirectory>
+              <md5>d535206d88da7f5b066a4624c321ee73</md5>
             </configuration>
           </execution>
         </executions>
       </plugin>
-
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -110,20 +109,6 @@
           </execution>
         </executions>
       </plugin>
-<!--       <plugin> -->
-<!--         <groupId>org.apache.maven.plugins</groupId> -->
-<!--         <artifactId>maven-jar-plugin</artifactId> -->
-<!--         <version>2.3.1</version> -->
-<!--         <configuration> -->
-<!--           <archive> -->
-<!--             <manifest> -->
-<!--               <addClasspath>true</addClasspath> -->
-<!--               <classpathLayoutType>custom</classpathLayoutType> -->
-<!--               <customClasspathLayout>dependency/${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</customClasspathLayout> -->
-<!--             </manifest> -->
-<!--           </archive> -->
-<!--         </configuration> -->
-<!--       </plugin> -->
     </plugins>
   </build>   
 </project>

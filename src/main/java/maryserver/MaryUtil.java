@@ -16,6 +16,10 @@ public class MaryUtil {
       locale = voice.getLocale().toString();
     }
 
+    if (effects == "") {
+      effects = "Volume amount:2.0;";
+    }
+
     Mary.process(text, "TEXT", "AUDIO", locale, "WAVE", voiceName, style,
         effects, "", out);
 
