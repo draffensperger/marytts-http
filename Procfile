@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/*:target/voices/lib/* maryservlet.SecureMaryTTSServlet
+web:    java -cp target/classes:target/dependency/*:target/voices/lib/* maryserver.MaryServer
