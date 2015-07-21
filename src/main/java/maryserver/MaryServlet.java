@@ -11,6 +11,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.log4j.PropertyConfigurator;
 import marytts.server.Mary;
+import org.apache.commons.codec.binary.Base64;
 
 @SuppressWarnings("serial")
 public class MaryServlet extends HttpServlet {
@@ -19,7 +20,7 @@ public class MaryServlet extends HttpServlet {
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
 
-    String secret = System.getenv("SECRET");
+    String secret = System.getenv("HMAC_SECRET");
     if (secret != null) {
       initRequestMac(secret);
     }
@@ -47,7 +48,8 @@ public class MaryServlet extends HttpServlet {
   private void initRequestMac(String secret) {
     try {
       mac = Mac.getInstance("HmacSHA256");
-      mac.init(new SecretKeySpec(secret.getBytes(), "HmacSHA256"));
+      byte[] secretBytes = Base64.decodeBase64(secret.getBytes("UTF-8"));
+      mac.init(new SecretKeySpec(secretBytes, "HmacSHA256"));
     } catch (Exception e) {
       log("Exception inializing authentication", e);
     }
