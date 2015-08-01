@@ -22,6 +22,8 @@ The following main query string parameters can be specified:
 
 To better understand these options and how they are used by MaryTTS, you can
 [install MaryTTS locally](http://mary.dfki.de/download/) and experiment with it.
+You can also try the MaryTTS [online demo](http://mary.dfki.de:59125/), though
+as of this writing the demo is sometimes down.
 
 To play the audio on a web page you can embed it with the `<audio>` tag, e.g.:
 ```

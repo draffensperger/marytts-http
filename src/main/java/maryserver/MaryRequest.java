@@ -50,8 +50,8 @@ public class MaryRequest {
 
   private void getParams() {
     text = req.getParameter("text");
-    expiresStr = req.getParameter("expires");
 
+    expiresStr = paramOrDefault("expires", "");
     localeStr = paramOrDefault("locale", "");
     gender = paramOrDefault("gender", "");
     voiceName = paramOrDefault("voice", "");
@@ -66,10 +66,12 @@ public class MaryRequest {
   }
 
   private void parseParams() {
-    if (expiresStr != null) {
+    if (expiresStr != "") {
       try {
         expiresMS = Long.parseLong(expiresStr) * 1000;
-      } catch (NumberFormatException e) {}
+      } catch (NumberFormatException e) {
+        expiresMS = 0;
+      }
     }
 
     try {
@@ -82,7 +84,7 @@ public class MaryRequest {
       resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "No text specified");
       return false;
     }
-    if (expiresStr != null && expiresMS < System.currentTimeMillis()) {
+    if (expiresStr != "" && expiresMS < System.currentTimeMillis()) {
       resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,  "Request expired");
       return false;
     }
