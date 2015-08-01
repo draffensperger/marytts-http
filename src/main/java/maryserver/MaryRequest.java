@@ -52,7 +52,7 @@ public class MaryRequest {
     text = req.getParameter("text");
     expiresStr = req.getParameter("expires");
 
-    localeStr = paramOrDefault("locale", requestLocaleString());
+    localeStr = paramOrDefault("locale", "");
     gender = paramOrDefault("gender", "");
     voiceName = paramOrDefault("voice", "");
     style = paramOrDefault("style", "");
@@ -63,15 +63,6 @@ public class MaryRequest {
   private String paramOrDefault(String key, String defaultVal) {
     String val = req.getParameter(key);
     return val != null ? val : defaultVal;
-  }
-
-  private String requestLocaleString() {
-    Locale locale = req.getLocale();
-    String countryPart = "";
-    if (locale.getCountry() != "") {
-      countryPart = "_" + locale.getCountry();
-    }
-    return locale.getLanguage() + countryPart;
   }
 
   private void parseParams() {

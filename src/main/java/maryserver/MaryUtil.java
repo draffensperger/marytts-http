@@ -10,6 +10,11 @@ public class MaryUtil {
   public static void writeWaveAudio(OutputStream out, String text, String locale,
       String gender, String voiceName, String style, String effects) throws Exception
   {
+    // Default to English
+    if (locale == "") {
+      locale = "en";
+    }
+
     if (voiceName == "") {
       Voice voice = defaultVoice(locale, gender);
       voiceName = voice.getName();
