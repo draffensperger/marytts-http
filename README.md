@@ -91,6 +91,10 @@ useful.
 License
 -------
 
-This code itself itself is licensed under the simplified BSD License (see License.md)
+This marytts-http code itself is copyright David Raffensperger and MIT licensed.
 
-MaryTTS is licensed under the 
+MaryTTS is licensed under the GNU LGPL, but includes components with a variety
+of licenses (see https://github.com/marytts/marytts/blob/master/LICENSE.md).
+
+The included German voice, `voice-bits3-hsmm` is licensed under the Creative
+[Creative Commons License Attribution-NoDerivs 3.0 Unported](http://mary.dfki.de/download/by-nd-3.0.html).
